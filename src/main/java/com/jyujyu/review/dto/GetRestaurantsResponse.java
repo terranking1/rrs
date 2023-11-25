@@ -14,7 +14,6 @@ public class GetRestaurantsResponse {
     public GetRestaurantsResponse() {
     }
 
-    @Builder
     public GetRestaurantsResponse(List<RestaurantDto> restaurants) {
         this.restaurants = restaurants;
     }

@@ -1,9 +1,16 @@
 package com.jyujyu.review.api;
 
 import com.jyujyu.review.dto.CreateAndEditRestaurantRequest;
+import com.jyujyu.review.dto.GetRestaurantsResponse;
+import com.jyujyu.review.dto.RestaurantDetailDto;
+import com.jyujyu.review.dto.RestaurantDto;
+import com.jyujyu.review.model.Restaurant;
 import com.jyujyu.review.service.RestaurantService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequiredArgsConstructor
@@ -12,15 +19,21 @@ public class RestaurantApi {
     private final RestaurantService restaurantService;
 
     @GetMapping("/restaurants")
-    public String getRestaurants() {
-        return "This is getRestaurants";
+    public List<RestaurantDto> getRestaurants() {
+        List<Restaurant> restaurants = restaurantService.getRestaurants();
+        List<RestaurantDto> collect = restaurants.stream()
+                .map(RestaurantDto::new)
+                .collect(Collectors.toList());
+
+        return collect;
     }
 
     @GetMapping("/restaurant/{restaurantId}")
-    public String getRestaurant(
+    public RestaurantDetailDto getRestaurant(
             @PathVariable Long restaurantId
     ) {
-        return "This is getRestaurant, " + restaurantId;
+        Restaurant restaurant = restaurantService.getRestaurant(restaurantId);
+        return new RestaurantDetailDto(restaurant);
     }
 
     @PostMapping("/restaurant")

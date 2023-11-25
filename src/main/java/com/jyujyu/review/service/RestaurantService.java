@@ -72,4 +72,16 @@ public class RestaurantService {
 
         restaurantRepository.delete(restaurant);
     }
+
+    public List<Restaurant> getRestaurants() {
+
+        return restaurantRepository.findAll();
+    }
+
+    public Restaurant getRestaurant(Long id) {
+
+        return restaurantRepository.findById(id).orElseThrow(
+                () -> new RuntimeException("존재하지 않는 식당입니다.")
+        );
+    }
 }
