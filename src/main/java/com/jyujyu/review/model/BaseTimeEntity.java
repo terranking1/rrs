@@ -26,14 +26,14 @@ public abstract class BaseTimeEntity {
     @LastModifiedDate
     private String updated_at;
 
-//    @PrePersist
-//    public void onPrePersist() {
-//        this.created_at = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
-//        this.updated_at = created_at;
-//    }
-//
-//    @PreUpdate
-//    public void onPreUpdate() {
-//        this.updated_at = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
-//    }
+    @PrePersist
+    public void onPrePersist() {
+        this.created_at = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+        this.updated_at = created_at;
+    }
+
+    @PreUpdate
+    public void onPreUpdate() {
+        this.updated_at = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+    }
 }

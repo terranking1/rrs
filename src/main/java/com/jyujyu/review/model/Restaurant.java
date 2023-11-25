@@ -14,7 +14,6 @@ import java.util.List;
 @Table(name = "restaurant")
 public class Restaurant extends BaseTimeEntity{
 
-    @NotNull
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "restaurant_id")
     private Long id;
@@ -35,9 +34,12 @@ public class Restaurant extends BaseTimeEntity{
     }
 
     @Builder
-    public Restaurant(Long id, List<RestaurantMenu> menus, String name, String address) {
-        this.id = id;
-        this.menus = menus;
+    public Restaurant(String name, String address) {
+        this.name = name;
+        this.address = address;
+    }
+
+    public void changeRestaurant(String name, String address) {
         this.name = name;
         this.address = address;
     }

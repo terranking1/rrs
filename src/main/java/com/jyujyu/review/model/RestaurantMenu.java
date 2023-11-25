@@ -11,7 +11,6 @@ import lombok.Setter;
 @Table(name = "restaurant_menu")
 public class RestaurantMenu extends BaseTimeEntity{
 
-    @NotNull
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "restaurant_menu_id")
     private Long id;
@@ -31,8 +30,7 @@ public class RestaurantMenu extends BaseTimeEntity{
     }
 
     @Builder
-    public RestaurantMenu(Long id, Restaurant restaurant, String name, int price) {
-        this.id = id;
+    public RestaurantMenu(Restaurant restaurant, String name, int price) {
         this.restaurant = restaurant;
         this.name = name;
         this.price = price;

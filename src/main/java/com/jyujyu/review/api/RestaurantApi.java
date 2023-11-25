@@ -1,12 +1,15 @@
 package com.jyujyu.review.api;
 
 import com.jyujyu.review.dto.CreateAndEditRestaurantRequest;
+import com.jyujyu.review.service.RestaurantService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
 public class RestaurantApi {
+
+    private final RestaurantService restaurantService;
 
     @GetMapping("/restaurants")
     public String getRestaurants() {
@@ -21,24 +24,27 @@ public class RestaurantApi {
     }
 
     @PostMapping("/restaurant")
-    public String createRestaurant(
+    public void createRestaurant(
             @RequestBody CreateAndEditRestaurantRequest request
     ) {
-        return "This is createRestaurant";
+        restaurantService.createRestaurant(request);
+
     }
 
     @PutMapping("/restaurant/{restaurantId}")
-    public String editRestaurant(
+    public void editRestaurant(
             @PathVariable Long restaurantId,
             @RequestBody CreateAndEditRestaurantRequest request
     ) {
-        return "This is editRestaurant";
+        restaurantService.editRestaurant(restaurantId, request);
+
     }
 
     @DeleteMapping("/restaurant/{restaurantId}")
-    public String deleteRestaurant(
+    public void deleteRestaurant(
             @PathVariable Long restaurantId
     ) {
-        return "This is deleteRestaurant";
+        restaurantService.deleteRestaurant(restaurantId);
+
     }
 }

@@ -11,7 +11,6 @@ import lombok.Setter;
 @Table(name = "review")
 public class Review extends BaseTimeNotUpdateEntity {
 
-    @NotNull
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "review_id")
     private Long id;
@@ -32,8 +31,7 @@ public class Review extends BaseTimeNotUpdateEntity {
     }
 
     @Builder
-    public Review(Long id, Restaurant restaurant, String content, double score) {
-        this.id = id;
+    public Review(Restaurant restaurant, String content, double score) {
         this.restaurant = restaurant;
         this.content = content;
         this.score = score;
