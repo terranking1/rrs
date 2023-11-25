@@ -26,7 +26,7 @@ public class RestaurantService {
                 .name(request.getName())
                 .address(request.getAddress())
                 .build();
-        Restaurant savedRestaurant = restaurantRepository.save(restaurant);
+        restaurantRepository.save(restaurant);
 
         request.getMenus().forEach((menu) -> {
             RestaurantMenu restaurantMenu = RestaurantMenu.builder()
@@ -38,7 +38,7 @@ public class RestaurantService {
             restaurantMenuRepository.save(restaurantMenu);
         });
 
-        return savedRestaurant.getId();
+        return restaurant.getId();
     }
 
     @Transactional

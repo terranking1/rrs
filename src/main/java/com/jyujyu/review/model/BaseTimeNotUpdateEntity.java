@@ -22,9 +22,9 @@ public abstract class BaseTimeNotUpdateEntity {
     @CreatedDate
     private String created_at;
 
-//    @PrePersist
-//    public void onPrePersist() {
-//        this.created_at = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
-//    }
+    @PrePersist
+    public void onPrePersist() {
+        this.created_at = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+    }
 
 }
